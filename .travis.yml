@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true acasado/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key: $SECRET_ACCESS_KEY
+  region: "eu-west-3"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-364567996486"
+	bucket_path: "docker-react"
+  on:
+    branch: master
